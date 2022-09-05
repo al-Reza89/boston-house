@@ -1,5 +1,4 @@
 from crypt import methods
-import imp
 import pickle
 import re
 from flask import Flask,request,app,jsonify,url_for,render_template
@@ -26,7 +25,7 @@ def predict_api():
     # if we get the data first we will do standarization scaling.pkl eita transform korbe
     print(np.array(list(data.values())).reshape(1,-1))
     new_data= scaler.transform(np.array(list(data.values())).reshape(1,-1))
-    output=regmodel.prdict(new_data)
+    output=regmodel.predict(new_data)
     #  2D tai first value return korbo
     print(output[0])
     return jsonify(output[0])
